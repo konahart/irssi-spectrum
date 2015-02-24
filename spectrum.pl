@@ -9,7 +9,7 @@
 use strict;
 use vars qw($VERSION %IRSSI);
 
-$VERSION = "1.4";
+$VERSION = "1.0";
 %IRSSI = (
     authors     => 'Laurel "Kona" Hart',
     contact     => 'laurel.elise.hart@gmail.com',
@@ -49,31 +49,21 @@ my @rainbow = ('5', '4', '7', '8', '9', '3', '10', '11', '12', '2', '6', '13');
 my @bright = ('4', '8', '9', '11', '12', '13');
 my @cool = ('9', '11', '12', '13');
 
-sub rainbow {
-	colourify(@_, \@rainbow);
-}
-
-sub bright {
-	colourify(@_, \@bright);
-}
-
-sub cool {
-	colourify(@_, \@cool);
-}
-
-# str make_colors($string)
-# returns random-coloured string
+# str make_colors($colorscheme, $string)
+# returns a string colored according to colorscheme
 sub make_colors {
 	my ($colorscheme, $string) = @_;
 	Encode::_utf8_on($string);
 	my $newstr = "";
 
+	#pick a random color to start on
 	my $start = int(rand(scalar(@{$colorscheme})));
 	my $color = $start;
 
 	my $i = 0;
 	for (my $c = 0; $c < length($string); $c++) {
 		my $char = substr($string, $c, 1);
+		#don't color spaces
 		if ($char eq ' ') {
 			$newstr .= $char;
 			next;
@@ -83,16 +73,16 @@ sub make_colors {
 			$color = $color % @{$colorscheme};
 			$newstr .= "\003";
 			$newstr .= sprintf("%02d", $colorscheme->[$color]);
-			$newstr .= (($char eq ",") ? ",," : $char);
-		} else {
-			$newstr .= $char;
 		}
+		$newstr .= $char;
 		$i++;
 	}
 
 	return $newstr;
 }
 
+# void colourify($text, $server, $destination, $colorscheme)
+# handles /msg, /me, /topic, and /kick and colors string
 sub colourify {
 	my ($text, $server, $dest, $colorscheme) = @_;
 
@@ -134,6 +124,22 @@ sub colourify {
 
 	} 
 }
+
+# void rainbow($text, $server, $destination)
+sub rainbow {
+	colourify(@_, \@rainbow);
+}
+
+# void rainbow($text, $server, $destination)
+sub bright {
+	colourify(@_, \@bright);
+}
+
+# void rainbow($text, $server, $destination)
+sub cool {
+	colourify(@_, \@cool);
+}
+
 
 Irssi::command_bind("rainbow", "rainbow");
 Irssi::command_bind("bright", "bright");
