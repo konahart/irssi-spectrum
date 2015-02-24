@@ -178,7 +178,7 @@ sub lightmagenta {
 }
 
 sub black {
-	colorify(@_, '0');
+	colorify(@_, '1');
 }
 
 sub gray {
