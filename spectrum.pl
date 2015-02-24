@@ -1,7 +1,22 @@
 #!/usr/bin/perl -w
 
 # USAGE:
+# /rainbow <text>
+# output colored text in the rainbow colorscheme, starting at a random point
+# if the first word of the text is /topic, /kick, or /me, completes those 
+# commands with colored text.
 #
+# /bright <text>
+# output colored text in the bright colorscheme, starting at a random point
+# if the first word of the text is /topic, /kick, or /me, completes those 
+# commands with colored text.
+#
+# /cool <text>
+# output colored text in the cool (as in non-warm colors) colorscheme, 
+# starting at a random point 
+# if the first word of the text is /topic, /kick, or /me, completes those 
+# commands with colored text.
+
 
 # Modified from rainbow.pl by Jakub Jankowski <shasta@atn.pl>
 # for Irssi 0.7.98.4 and newer
@@ -14,7 +29,7 @@ $VERSION = "1.0";
     authors     => 'Laurel "Kona" Hart',
     contact     => 'laurel.elise.hart@gmail.com',
     name        => 'spectrum',
-#    description => '',
+    description => 'Print colored text in several colorschemes.',
     license     => 'GNU GPLv2 or later',
 #    url         => '',
 );
@@ -23,7 +38,7 @@ use Irssi;
 use Irssi::Irc;
 
 #Config:
-my $colorspan = 2;
+my $colorspan = 2; #how many characters makes up each color before switching
 
 # colors list (foregrounds)
 #  5 == red
@@ -50,7 +65,8 @@ my @bright = ('4', '8', '9', '11', '12', '13');
 my @cool = ('9', '11', '12', '13');
 
 # str make_colors($colorscheme, $string)
-# returns a string colored according to colorscheme
+# returns a string colored according to colorscheme, starting at a random point
+# in the colorscheme
 sub make_colors {
 	my ($colorscheme, $string) = @_;
 	Encode::_utf8_on($string);
@@ -81,9 +97,9 @@ sub make_colors {
 	return $newstr;
 }
 
-# void colourify($text, $server, $destination, $colorscheme)
+# void colorify($text, $server, $destination, $colorscheme)
 # handles /msg, /me, /topic, and /kick and colors string
-sub colourify {
+sub colorify {
 	my ($text, $server, $dest, $colorscheme) = @_;
 
 	if (!$server || !$server->{connected}) {
@@ -127,17 +143,17 @@ sub colourify {
 
 # void rainbow($text, $server, $destination)
 sub rainbow {
-	colourify(@_, \@rainbow);
+	colorify(@_, \@rainbow);
 }
 
 # void rainbow($text, $server, $destination)
 sub bright {
-	colourify(@_, \@bright);
+	colorify(@_, \@bright);
 }
 
 # void rainbow($text, $server, $destination)
 sub cool {
-	colourify(@_, \@cool);
+	colorify(@_, \@cool);
 }
 
 
