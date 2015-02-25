@@ -10,11 +10,16 @@
 # The following commands work in the same way with their respective colors:
 # /trans <text>
 # /genderqueer <text>
+# 	also aliased to to /gq
 # /bi <text>
 # /pan <text>
 # /poly <text>
 # /ace <text>
-# /graya <text>
+# /lightace <text>
+# 	also aliased to /graya and /greya 
+# /aro <text>
+# /lightaro <text>
+# 	also aliased to /grayro and /greyro 
 #
 # I have done my best to match colors, but a lot of the flag colors simply aren't
 # currently supported in irssi. Some look better/closer than others.
@@ -197,10 +202,15 @@ sub lightaro {
 Irssi::command_bind("pride", "pride");
 Irssi::command_bind("trans", "trans");
 Irssi::command_bind("genderqueer", "genderqueer");
+Irssi::command_bind("gq", "genderqueer");
 Irssi::command_bind("bi", "bi");
 Irssi::command_bind("pan", "pan");
 Irssi::command_bind("poly", "poly");
 Irssi::command_bind("ace", "ace");
 Irssi::command_bind("lightace", "lightace");
+Irssi::command_bind("graya", "lightace");
+Irssi::command_bind("greya", "lightace");
 Irssi::command_bind("aro", "aro");
 Irssi::command_bind("lightaro", "lightaro");
+Irssi::command_bind("grayro", "lightaro");
+Irssi::command_bind("greyro", "lightaro");

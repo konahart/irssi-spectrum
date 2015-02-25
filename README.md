@@ -66,14 +66,19 @@ commands with colored text.
 * pride <text>
 * /trans <text>
 * /genderqueer <text>
+	* also aliased to /gq
 * /bi <text>
 * /pan <text>
 * /poly <text>
 * /ace <text>
 * /lightace <text>
+	* also aliased to /graya and /greya
+* /aro <text>
+* /lightaro <text>
+	* also aliased to /grayro and /greyro
 
 See image below for demonstration. 
-![pride demonstration](https://cloud.githubusercontent.com/assets/945693/6345257/cdde70ec-bbb8-11e4-8ead-3b57bcf827ef.png)
+![pride demonstration](https://cloud.githubusercontent.com/assets/945693/6381798/dbaa5ed4-bcf8-11e4-9f6e-d69d62fdd042.png)
 Note: Colors may appear differently in different terminals.
 I have done my best to match colors, but a lot of the flag colors simply aren't
 currently supported in irssi. Some look better/closer than others.
