@@ -14,7 +14,7 @@
 # /pan <text>
 # /poly <text>
 # /ace <text>
-# /lightace <text>
+# /graya <text>
 #
 # I have done my best to match colors, but a lot of the flag colors simply aren't
 # currently supported in irssi. Some look better/closer than others.
@@ -67,6 +67,8 @@ my @pan = ('4', '8', '11');
 my @poly = ('4', '3', '12');
 my @ace = ('1', '14', '0', '6');
 my @lightace = ('14', '15', '0', '6');
+my @aro = ('3', '9', '0', '14', '1');
+my @lightaro = ('3', '9', '0', '15', '14');
 
 # str make_colors($colorscheme, $string)
 # returns a string colored according to colorscheme, starting at a random point
@@ -177,9 +179,19 @@ sub ace {
 	colorify(@_, \@ace);
 }
 
-# void ace($text, $server, $destination)
+# void lightace($text, $server, $destination)
 sub lightace {
 	colorify(@_, \@lightace);
+}
+
+# void aro($text, $server, $destination)
+sub aro {
+	colorify(@_, \@aro);
+}
+
+# void lightaro($text, $server, $destination)
+sub lightaro {
+	colorify(@_, \@lightaro);
 }
 
 Irssi::command_bind("pride", "pride");
@@ -190,3 +202,5 @@ Irssi::command_bind("pan", "pan");
 Irssi::command_bind("poly", "poly");
 Irssi::command_bind("ace", "ace");
 Irssi::command_bind("lightace", "lightace");
+Irssi::command_bind("aro", "aro");
+Irssi::command_bind("lightaro", "lightaro");
